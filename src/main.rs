@@ -1,8 +1,10 @@
 use clap::Parser;
+use clap_stdin::MaybeStdin;
+
 
 #[derive(Parser)]
 struct Cli {
-	message: String,
+	message: MaybeStdin<String>,
 }
 
 fn word_wrap(paragraph: &str, line_length: usize) -> Vec<String> {

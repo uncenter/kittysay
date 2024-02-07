@@ -11,7 +11,9 @@ cargo install --git https://github.com/uncenter/kittysay.git
 ## Usage
 
 ```
-kittysay [message]
+kittysay ":3"
+
+echo ":3" | kittysay -
 ```
 
 ## License
