@@ -14,7 +14,6 @@ The cutest successor of [`cowsay`](https://en.wikipedia.org/wiki/Cowsay).
       l  ~ヽ
       じしf_,)ノ
 
-
 ```
 
 ## Installation
