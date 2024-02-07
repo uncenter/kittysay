@@ -1,11 +1,16 @@
+use color_eyre::eyre::Result;
 use std::mem;
 
 use clap::Parser;
 use clap_stdin::MaybeStdin;
 
+use crossterm::terminal;
+
 #[derive(Parser)]
 struct Cli {
 	message: MaybeStdin<String>,
+	#[clap(long, short)]
+	width: Option<u8>,
 }
 
 fn word_wrap(paragraph: &str, line_length: usize) -> Vec<String> {
@@ -30,9 +35,21 @@ fn word_wrap(paragraph: &str, line_length: usize) -> Vec<String> {
 	result
 }
 
-fn main() {
+fn main() -> Result<()> {
+	color_eyre::install()?;
+
 	let args = Cli::parse();
-	let mut lines = word_wrap(&args.message, 45);
+	let (cols, _) = terminal::size()?;
+
+	let width = match args.width {
+		Some(w) => match u16::from(w) >= cols - 5 {
+			true => cols - 5,
+			false => w.into(),
+		},
+		None => 45,
+	};
+
+	let mut lines = word_wrap(&args.message, width.into());
 	let longest = lines.iter().map(std::string::String::len).max().unwrap();
 
 	println!(
@@ -77,4 +94,6 @@ fn main() {
 		},
 		"-".repeat(longest)
 	);
+
+	Ok(())
 }
