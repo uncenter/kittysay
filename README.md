@@ -2,6 +2,21 @@
 
 The cutest successor of [`cowsay`](https://en.wikipedia.org/wiki/Cowsay).
 
+```
+
+  ----
+< meow >
+  ----
+  \
+    \
+      ／l、
+    （ﾟ､ ｡ ７
+      l  ~ヽ
+      じしf_,)ノ
+
+
+```
+
 ## Installation
 
 ```sh
