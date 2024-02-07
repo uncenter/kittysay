@@ -49,10 +49,13 @@ static THINK_CHARS: Chars = Chars {
 };
 
 #[derive(Parser)]
+#[command(version, about)]
 struct Cli {
 	message: MaybeStdin<String>,
+	/// Set custom width of the message box
 	#[clap(long, short)]
 	width: Option<u16>,
+	/// Enable kittythink mode
 	#[clap(long, short)]
 	think: bool,
 }
