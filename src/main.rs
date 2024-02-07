@@ -10,7 +10,7 @@ use crossterm::terminal;
 struct Cli {
 	message: MaybeStdin<String>,
 	#[clap(long, short)]
-	width: Option<u8>,
+	width: Option<u16>,
 }
 
 fn word_wrap(paragraph: &str, line_length: usize) -> Vec<String> {
@@ -41,16 +41,10 @@ fn main() -> Result<()> {
 	let args = Cli::parse();
 	let (cols, _) = terminal::size()?;
 
-	let width = match args.width {
-		Some(w) => match u16::from(w) >= cols - 5 {
-			true => cols - 5,
-			false => w.into(),
-		},
-		None => 45,
-	};
+	let width = args.width.unwrap_or(45).min(cols.saturating_sub(5));
 
-	let mut lines = word_wrap(&args.message, width.into());
-	let longest = lines.iter().map(std::string::String::len).max().unwrap();
+	let mut lines = word_wrap(&args.message, width as usize);
+	let longest = lines.iter().map(String::len).max().unwrap();
 
 	println!(
 		"
