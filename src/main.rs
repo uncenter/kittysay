@@ -1,3 +1,5 @@
+use std::mem;
+
 use clap::Parser;
 use clap_stdin::MaybeStdin;
 
@@ -18,40 +20,20 @@ fn word_wrap(paragraph: &str, line_length: usize) -> Vec<String> {
 			if potential_line.len() <= line_length {
 				current_line = potential_line;
 			} else {
-				result.push(current_line.clone());
-				current_line.clear();
+				result.push(mem::take(&mut current_line));
 				current_line.push_str(word);
 			}
 		}
 	}
 
 	result.push(current_line);
-
-	return result;
-}
-
-fn find_longest_string(strings: Vec<String>) -> Option<String> {
-	let mut longest_string: Option<String> = None;
-
-	for s in strings {
-		match longest_string {
-			Some(ref longest) if s.len() > longest.len() => {
-				longest_string = Some(s);
-			}
-			None => {
-				longest_string = Some(s);
-			}
-			_ => {}
-		}
-	}
-
-	longest_string
+	result
 }
 
 fn main() {
 	let args = Cli::parse();
 	let mut lines = word_wrap(&args.message, 45);
-	let longest = find_longest_string(lines.clone()).unwrap();
+	let longest = lines.iter().map(|s| s.len()).max().unwrap();
 
 	println!(
 		"
@@ -65,14 +47,14 @@ fn main() {
       l  ~ヽ
       じしf_,)ノ
     ",
-		"-".repeat(longest.len()),
-		match lines.clone().len() == 1 {
-			true => format!("< {} >", lines.clone()[0]),
+		"-".repeat(longest),
+		match lines.len() == 1 {
+			true => format!("< {} >", lines[0]),
 			false => {
 				let mut result = format!(
 					"/ {}{}\\",
 					lines[0],
-					" ".repeat(longest.len() - lines[0].len() + 1)
+					" ".repeat(longest - lines[0].len() + 1)
 				);
 				lines.remove(0);
 				let last = lines.pop().unwrap();
@@ -82,7 +64,7 @@ fn main() {
 						"{}\n| {}{}|",
 						result,
 						line,
-						" ".repeat(longest.len() - line.len() + 1)
+						" ".repeat(longest - line.len() + 1)
 					);
 				}
 
@@ -90,10 +72,10 @@ fn main() {
 					"{}\n\\ {}{}/",
 					result,
 					last,
-					" ".repeat(longest.len() - last.len() + 1)
+					" ".repeat(longest - last.len() + 1)
 				)
 			}
 		},
-		"-".repeat(longest.len())
+		"-".repeat(longest)
 	);
 }
