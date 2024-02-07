@@ -1,6 +1,6 @@
 [package]
 name = "kittysay"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["uncenter <uncenter@uncenter.dev>"]
 license = "MIT"
 description = "The cutest successor of cowsay."
