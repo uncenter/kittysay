@@ -54,7 +54,7 @@ struct Cli {
 	#[clap(long, short)]
 	width: Option<u16>,
 	#[clap(long, short)]
-	think: Option<bool>,
+	think: bool,
 }
 
 fn word_wrap(paragraph: &str, line_length: usize) -> Vec<String> {
@@ -86,11 +86,7 @@ fn main() -> Result<()> {
 	let (cols, _) = terminal::size()?;
 
 	let width = args.width.unwrap_or(45).min(cols.saturating_sub(5));
-	let chars = if args.think.unwrap_or(false) {
-		&THINK_CHARS
-	} else {
-		&SAY_CHARS
-	};
+	let chars = if args.think { &THINK_CHARS } else { &SAY_CHARS };
 
 	let mut lines = word_wrap(&args.message, width as usize);
 	let longest = lines.iter().map(String::len).max().unwrap();
