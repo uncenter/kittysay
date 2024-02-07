@@ -1,6 +1,6 @@
 [package]
 name = "kittysay"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["uncenter <uncenter@uncenter.dev>"]
 license = "MIT"
 description = "The cutest successor of cowsay."
@@ -14,6 +14,8 @@ edition = "2021"
 [dependencies]
 clap = { version = "4.0", features = ["derive"] }
 clap-stdin = "0.4.0"
+color-eyre = "0.6.2"
+crossterm = "0.27.0"
 
 [lints.clippy]
 all = "warn"

@@ -1,0 +1,46 @@
+name: Build
+
+on:
+  workflow_call:
+  push:
+    branches: [main]
+    tags-ignore:
+      - "**"
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - "x86_64-apple-darwin"
+          - "aarch64-apple-darwin"
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+          targets: ${{ matrix.target }}
+
+      - name: Setup Rust cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Build
+        run: cargo build -r --target ${{ matrix.target }} --locked
+        env:
+          RUSTFLAGS: "-C lto=fat -C embed-bitcode=yes -C strip=symbols -C codegen-units=1 -C opt-level=z"
+
+      - name: Rename artifact
+        run: cp ./target/${{ matrix.target }}/release/kittysay ./kittysay-${{ matrix.target }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: kittysay-${{ matrix.target }}
+          path: ./kittysay-${{ matrix.target }}
