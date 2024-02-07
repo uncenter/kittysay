@@ -1,6 +1,14 @@
 [package]
 name = "kittysay"
 version = "0.1.0"
+authors = ["uncenter <uncenter@uncenter.dev>"]
+license = "MIT"
+description = "The cutest successor of cowsay."
+readme = "README.md"
+homepage = "https://github.com/uncenter/kittysay"
+repository = "https://github.com/uncenter/kittysay"
+keywords = ["cli"]
+categories = ["command-line-utilities"]
 edition = "2021"
 
 [dependencies]
