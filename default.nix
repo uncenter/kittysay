@@ -1,11 +1,12 @@
 {
   pkgs ? import <nixpkgs> {},
   lib ? pkgs.lib,
+  version ? "latest",
   ...
 }:
 pkgs.rustPlatform.buildRustPackage {
   pname = "kittysay";
-  version = "0.3.0";
+  inherit version;
 
   src = ./.;
   cargoLock.lockFile = ./Cargo.lock;
