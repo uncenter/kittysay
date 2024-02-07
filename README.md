@@ -52,13 +52,13 @@ nix run github:uncenter/kittysay
   };
 
   outputs = { self, nixpkgs, kittysay }: {
-	nixosConfigurations.example = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.example = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [{
-		environment.systemPackages = [
-		  inputs.kittysay.packages.${pkgs.system}.default
+        environment.systemPackages = [
+          inputs.kittysay.packages.${pkgs.system}.default
         ];
-	  }];
+      }];
     };
   }
 }
