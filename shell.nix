@@ -4,7 +4,7 @@
   rustfmt,
   clippy,
 }: let
-  mainPkg = callPackage ./default.nix {};
+  mainPkg = callPackage ./default.nix {version = "debug";};
 in
   mainPkg.overrideAttrs (oa: {
     nativeBuildInputs =
