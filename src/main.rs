@@ -16,7 +16,7 @@ fn word_wrap(paragraph: &str, line_length: usize) -> Vec<String> {
 		if current_line.is_empty() {
 			current_line.push_str(word);
 		} else {
-			let potential_line = format!("{} {}", current_line, word);
+			let potential_line = format!("{current_line} {word}");
 			if potential_line.len() <= line_length {
 				current_line = potential_line;
 			} else {
@@ -33,7 +33,7 @@ fn word_wrap(paragraph: &str, line_length: usize) -> Vec<String> {
 fn main() {
 	let args = Cli::parse();
 	let mut lines = word_wrap(&args.message, 45);
-	let longest = lines.iter().map(|s| s.len()).max().unwrap();
+	let longest = lines.iter().map(std::string::String::len).max().unwrap();
 
 	println!(
 		"
@@ -48,33 +48,32 @@ fn main() {
       じしf_,)ノ
     ",
 		"-".repeat(longest),
-		match lines.len() == 1 {
-			true => format!("< {} >", lines[0]),
-			false => {
-				let mut result = format!(
-					"/ {}{}\\",
-					lines[0],
-					" ".repeat(longest - lines[0].len() + 1)
-				);
-				lines.remove(0);
-				let last = lines.pop().unwrap();
+		if lines.len() == 1 {
+			format!("< {} >", lines[0])
+		} else {
+			let mut result = format!(
+				"/ {}{}\\",
+				lines[0],
+				" ".repeat(longest - lines[0].len() + 1)
+			);
+			lines.remove(0);
+			let last = lines.pop().unwrap();
 
-				for line in lines {
-					result = format!(
-						"{}\n| {}{}|",
-						result,
-						line,
-						" ".repeat(longest - line.len() + 1)
-					);
-				}
-
-				format!(
-					"{}\n\\ {}{}/",
+			for line in lines {
+				result = format!(
+					"{}\n| {}{}|",
 					result,
-					last,
-					" ".repeat(longest - last.len() + 1)
-				)
+					line,
+					" ".repeat(longest - line.len() + 1)
+				);
 			}
+
+			format!(
+				"{}\n\\ {}{}/",
+				result,
+				last,
+				" ".repeat(longest - last.len() + 1)
+			)
 		},
 		"-".repeat(longest)
 	);

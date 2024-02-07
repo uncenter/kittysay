@@ -14,3 +14,7 @@ edition = "2021"
 [dependencies]
 clap = { version = "4.0", features = ["derive"] }
 clap-stdin = "0.4.0"
+
+[lints.clippy]
+all = "warn"
+pedantic = "warn"
