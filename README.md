@@ -31,9 +31,9 @@ cargo install --git https://github.com/uncenter/kittysay.git
 #### Try it out with nix
 
 ```sh
-nix run github:uncenter/kittysay/v0.3.0
+nix run github:uncenter/kittysay/v0.3.0 ":3"
 # or for the latest version
-nix run github:uncenter/kittysay
+nix run github:uncenter/kittysay -- ":3"
 ```
 
 <details>
