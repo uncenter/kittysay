@@ -1,7 +1,6 @@
 use clap::Parser;
 use clap_stdin::MaybeStdin;
 
-
 #[derive(Parser)]
 struct Cli {
 	message: MaybeStdin<String>,
