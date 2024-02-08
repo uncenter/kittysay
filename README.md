@@ -74,6 +74,8 @@ kittysay ":3"
 echo ":3" | kittysay -
 ```
 
+You can use the `--width` flag to change the width of the message box (`kittysay ":3" --width 100`), or the `--think` flag to enable "think" mode (in which the speech bubbles are replaced with thought bubbles, similar to the `cowthink` program).
+
 ## License
 
 [MIT](LICENSE)
