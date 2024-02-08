@@ -78,4 +78,4 @@ You can use the `--width` flag to change the width of the message box (`kittysay
 
 ## License
 
-[MIT](LICENSE)
+[GPL-3.0](LICENSE)
