@@ -37,12 +37,21 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: 1.0.21
+
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
           path: artifacts
 
-      - name: Release
+      - name: Generate release notes
+        run: bunx changelogithub@latest --output CHANGELOG.txt
+
+      - name: Create release
         uses: softprops/action-gh-release@v1
         with:
+          body_path: CHANGELOG.txt
           files: artifacts/**/*
