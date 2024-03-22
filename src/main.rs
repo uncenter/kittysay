@@ -75,18 +75,13 @@ fn main() -> Result<()> {
 	let mut lines = wrap(&args.message, width as usize);
 	let longest = lines.iter().map(|line| line.width()).max().unwrap();
 
-	println!(
+	let msg = format!(
 		"
   {}
 {}
   {}
   {}
-    {}
-      ／l、
-    （ﾟ､ ｡ ７
-      l  ~ヽ
-      じしf_,)ノ
-    ",
+    {}",
 		chars.top.repeat(longest),
 		if lines.len() == 1 {
 			format!("{} {} {}", chars.single_left, lines[0], chars.single_right)
@@ -125,6 +120,15 @@ fn main() -> Result<()> {
 		chars.arrow,
 		chars.arrow,
 	);
+
+	let cat = "
+      ／l、
+    （ﾟ､ ｡ ７
+      l  ~ヽ
+      じしf_,)ノ
+	";
+
+	println!("{}{}", msg, cat);
 
 	Ok(())
 }
