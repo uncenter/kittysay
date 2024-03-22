@@ -61,6 +61,9 @@ struct Cli {
 	/// Enable kittythink mode (thought bubble)
 	#[clap(long, short)]
 	think: bool,
+	/// use custom colors
+	#[arg(long, short, num_args(2))]
+	colors: Option<Vec<u8>>,
 }
 
 fn main() -> Result<()> {
@@ -121,6 +124,13 @@ fn main() -> Result<()> {
 		chars.arrow,
 	);
 
+	let mut color1 = console::Color::White;
+	let mut color2 = console::Color::White;
+	if let Some(colors) = args.colors {
+		color1 = console::Color::Color256(colors[0]);
+		color2 = console::Color::Color256(colors[1]);
+	}
+
 	let cat = "
       ／l、
     （ﾟ､ ｡ ７
@@ -128,7 +138,11 @@ fn main() -> Result<()> {
       じしf_,)ノ
 	";
 
-	println!("{}{}", msg, cat);
+	println!(
+		"{}{}",
+		console::style(msg).fg(color1),
+		console::style(cat).fg(color2)
+	);
 
 	Ok(())
 }
