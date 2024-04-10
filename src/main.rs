@@ -54,10 +54,10 @@ static THINK_CHARS: Chars = Chars {
 #[command(version, about)]
 struct Cli {
 	message: MaybeStdin<String>,
-	/// Set custom width of the message box
+	/// Set width of speech/thought bubble
 	#[clap(long, short)]
 	width: Option<u16>,
-	/// Enable kittythink mode
+	/// Enable kittythink mode (thought bubble)
 	#[clap(long, short)]
 	think: bool,
 }
