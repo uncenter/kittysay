@@ -37,6 +37,11 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-tags: true
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:
