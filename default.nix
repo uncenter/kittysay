@@ -14,7 +14,7 @@ pkgs.rustPlatform.buildRustPackage {
   doCheck = false;
 
   meta = with lib; {
-    description = "The cutest successor of cowsay.";
+    description = "cowsay, but with a cute kitty :3";
     homepage = "https://github.com/uncenter/kittysay";
     license = licenses.mit;
     maintainers = [maintainers.uncenter];

@@ -1,6 +1,6 @@
 # kittysay
 
-The cutest successor of [`cowsay`](https://en.wikipedia.org/wiki/Cowsay).
+[`cowsay`](https://en.wikipedia.org/wiki/Cowsay), but with a cute kitty :3
 
 ```
 
