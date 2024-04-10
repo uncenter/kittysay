@@ -1,10 +1,12 @@
 use color_eyre::eyre::Result;
-use std::mem;
 
 use clap::Parser;
 use clap_stdin::MaybeStdin;
 
 use crossterm::terminal;
+
+use textwrap::wrap;
+use unicode_width::UnicodeWidthStr;
 
 struct Chars {
 	arrow: &'static str,
@@ -60,28 +62,6 @@ struct Cli {
 	think: bool,
 }
 
-fn word_wrap(paragraph: &str, line_length: usize) -> Vec<String> {
-	let mut result = Vec::new();
-	let mut current_line = String::new();
-
-	for word in paragraph.split_whitespace() {
-		if current_line.is_empty() {
-			current_line.push_str(word);
-		} else {
-			let potential_line = format!("{current_line} {word}");
-			if potential_line.len() <= line_length {
-				current_line = potential_line;
-			} else {
-				result.push(mem::take(&mut current_line));
-				current_line.push_str(word);
-			}
-		}
-	}
-
-	result.push(current_line);
-	result
-}
-
 fn main() -> Result<()> {
 	color_eyre::install()?;
 
@@ -91,8 +71,8 @@ fn main() -> Result<()> {
 	let width = args.width.unwrap_or(45).min(cols.saturating_sub(5));
 	let chars = if args.think { &THINK_CHARS } else { &SAY_CHARS };
 
-	let mut lines = word_wrap(&args.message, width as usize);
-	let longest = lines.iter().map(String::len).max().unwrap();
+	let mut lines = wrap(&args.message, width as usize);
+	let longest = lines.iter().map(|line| line.width()).max().unwrap();
 
 	println!(
 		"
@@ -114,7 +94,7 @@ fn main() -> Result<()> {
 				"{} {}{}{}",
 				chars.angled_up_right,
 				lines[0],
-				" ".repeat(longest - lines[0].len() + 1),
+				" ".repeat(longest - lines[0].width() + 1),
 				chars.angled_up_left
 			);
 			lines.remove(0);
@@ -126,7 +106,7 @@ fn main() -> Result<()> {
 					result,
 					chars.left,
 					line,
-					" ".repeat(longest - line.len() + 1),
+					" ".repeat(longest - line.width() + 1),
 					chars.right,
 				);
 			}
@@ -136,7 +116,7 @@ fn main() -> Result<()> {
 				result,
 				chars.angled_down_right,
 				last,
-				" ".repeat(longest - last.len() + 1),
+				" ".repeat(longest - last.width() + 1),
 				chars.angled_down_left,
 			)
 		},
