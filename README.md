@@ -68,13 +68,88 @@ nix run github:uncenter/kittysay -- ":3"
 
 ## Usage
 
+```sh
+kittysay <message>
+# or using stdin
+echo <message> | kittysay -
 ```
-kittysay ":3"
 
-echo ":3" | kittysay -
+### `--width`
+
+You can use the `--width` flag to change the width of the speech bubble. Defaults to `45`, maxes out at a little less than the width of your terminal if you try to pass a very large number.
+
+```
+$ kittysay "meow mrrrow mrrrp nyaaa nya nyaaa meow meowwww nyaaa meowwww"
+
+  --------------------------------------
+/ meow mrrrow mrrrp nyaaa nya nyaaa meow \
+\ meowwww nyaaa meowwww                  /
+  --------------------------------------
+  \
+    \
+      ／l、
+    （ﾟ､ ｡ ７
+      l  ~ヽ
+      じしf_,)ノ
 ```
 
-You can use the `--width` flag to change the width of the message box (`kittysay ":3" --width 100`), or the `--think` flag to enable "think" mode (in which the speech bubbles are replaced with thought bubbles, similar to the `cowthink` program).
+```
+$ kittysay "meow mrrrow mrrrp nyaaa nya nyaaa meow meowwww nyaaa meowwww" --width 1000
+
+  ------------------------------------------------------------
+< meow mrrrow mrrrp nyaaa nya nyaaa meow meowwww nyaaa meowwww >
+  ------------------------------------------------------------
+  \
+    \
+      ／l、
+    （ﾟ､ ｡ ７
+      l  ~ヽ
+      じしf_,)ノ
+
+```
+
+```
+ kittysay "meow mrrrow mrrrp nyaaa nya nyaaa meow meowwww nyaaa meowwww" --width 1
+
+  -------
+/ meow    \
+| mrrrow  |
+| mrrrp   |
+| nyaaa   |
+| nya     |
+| nyaaa   |
+| meow    |
+| meowwww |
+| nyaaa   |
+\ meowwww /
+  -------
+  \
+    \
+      ／l、
+    （ﾟ､ ｡ ７
+      l  ~ヽ
+      じしf_,)ノ
+
+```
+
+### `--think`
+
+You can use the `--think` flag to enable "think" mode, where the speech bubbles are replaced with thought bubbles (similar to the `cowthink` program).
+
+```
+$ kittysay --think ":3"
+
+  ⏜⏜
+( :3 )
+  ⏝⏝
+  ○
+    ○
+      ／l、
+    （ﾟ､ ｡ ７
+      l  ~ヽ
+      じしf_,)ノ
+
+```
 
 ## License
 
