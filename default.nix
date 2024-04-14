@@ -1,22 +1,21 @@
 {
-  pkgs ? import <nixpkgs> {},
-  lib ? pkgs.lib,
+  lib,
+  rustPlatform,
   version ? "latest",
   ...
 }:
-pkgs.rustPlatform.buildRustPackage {
+rustPlatform.buildRustPackage {
   pname = "kittysay";
   inherit version;
 
   src = ./.;
   cargoLock.lockFile = ./Cargo.lock;
 
-  doCheck = false;
-
-  meta = with lib; {
+  meta = {
     description = "cowsay, but with a cute kitty :3";
     homepage = "https://github.com/uncenter/kittysay";
-    license = licenses.mit;
-    maintainers = [maintainers.uncenter];
+    license = lib.licenses.gpl3;
+    maintainers = with lib.maintainers; [uncenter];
+    mainProgram = "kittysay";
   };
 }
