@@ -1,7 +1,7 @@
 {
-  description = "kittysay";
+  description = "kittysay - cowsay, but with a cute kitty :3";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
   outputs = {
     self,
