@@ -22,56 +22,22 @@
 
 ```sh
 cargo install kittysay
-# or
-cargo install --git https://github.com/uncenter/kittysay.git
 ```
 
 ### Nix
 
-#### Try it out
+[Available through Nixpkgs](https://nixpkgs.dev/kittysay).
 
-```sh
-nix run github:uncenter/kittysay/v0.5.0 ":3"
-# or for the latest commit
-nix run github:uncenter/kittysay -- ":3"
 ```
-
-<details>
-
-<summary>
-
-#### Installation with flakes
-
-</summary>
-
-```nix
-{
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    kittysay.url = "github:uncenter/kittysay";
-  };
-
-  outputs = { self, nixpkgs, kittysay }: {
-    nixosConfigurations.example = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [{
-        environment.systemPackages = [
-          inputs.kittysay.packages.${pkgs.system}.default
-        ];
-      }];
-    };
-  }
-}
+nix run nixpkgs#kittysay
 ```
-
-</details>
 
 ## Usage
 
 ```sh
 kittysay <message>
-# or using stdin
-echo <message> | kittysay -
+# or through stdin
+echo <message> | kittysay
 ```
 
 ### `--width`
@@ -109,7 +75,7 @@ $ kittysay "meow mrrrow mrrrp nyaaa nya nyaaa meow meowwww nyaaa meowwww" --widt
 ```
 
 ```
- kittysay "meow mrrrow mrrrp nyaaa nya nyaaa meow meowwww nyaaa meowwww" --width 1
+$ kittysay "meow mrrrow mrrrp nyaaa nya nyaaa meow meowwww nyaaa meowwww" --width 1
 
   -------
 / meow    \
