@@ -53,6 +53,7 @@ static THINK_CHARS: Chars = Chars {
 #[derive(Parser)]
 #[command(version, about)]
 struct Cli {
+	#[clap(default_value = "-")]
 	message: MaybeStdin<String>,
 	/// Set width of speech/thought bubble
 	#[clap(long, short)]
