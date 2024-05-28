@@ -3,5 +3,6 @@
 	"extends": [
 		"config:recommended",
 		":semanticCommitTypeAll(chore)"
-	]
+	],
+	"rangeStrategy": "bump"
 }
