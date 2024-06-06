@@ -124,11 +124,11 @@ fn main() -> Result<()> {
 		chars.arrow,
 	);
 
-	let mut color1 = console::Color::White;
-	let mut color2 = console::Color::White;
+	let mut msg_color = console::Color::White;
+	let mut cat_color = console::Color::White;
 	if let Some(colors) = args.colors {
-		color1 = console::Color::Color256(colors[0]);
-		color2 = console::Color::Color256(colors[1]);
+		msg_color = console::Color::Color256(colors[0]);
+		cat_color = console::Color::Color256(colors[1]);
 	}
 
 	let cat = "
@@ -140,8 +140,8 @@ fn main() -> Result<()> {
 
 	println!(
 		"{}{}",
-		console::style(msg).fg(color1),
-		console::style(cat).fg(color2)
+		console::style(msg).fg(msg_color),
+		console::style(cat).fg(cat_color)
 	);
 
 	Ok(())
