@@ -61,6 +61,9 @@ struct Cli {
 	/// Enable kittythink mode (thought bubble)
 	#[clap(long, short)]
 	think: bool,
+	/// Use custom colors. The first colors the message, the second colors the cat
+	#[arg(long, short, num_args(2))]
+	colors: Option<Vec<u8>>,
 }
 
 fn main() -> Result<()> {
@@ -75,18 +78,13 @@ fn main() -> Result<()> {
 	let mut lines = wrap(&args.message, width as usize);
 	let longest = lines.iter().map(|line| line.width()).max().unwrap();
 
-	println!(
+	let msg = format!(
 		"
   {}
 {}
   {}
   {}
-    {}
-      ／l、
-    （ﾟ､ ｡ ７
-      l  ~ヽ
-      じしf_,)ノ
-    ",
+    {}",
 		chars.top.repeat(longest),
 		if lines.len() == 1 {
 			format!("{} {} {}", chars.single_left, lines[0], chars.single_right)
@@ -124,6 +122,26 @@ fn main() -> Result<()> {
 		chars.bottom.repeat(longest),
 		chars.arrow,
 		chars.arrow,
+	);
+
+	let mut msg_color = console::Color::White;
+	let mut cat_color = console::Color::White;
+	if let Some(colors) = args.colors {
+		msg_color = console::Color::Color256(colors[0]);
+		cat_color = console::Color::Color256(colors[1]);
+	}
+
+	let cat = "
+      ／l、
+    （ﾟ､ ｡ ７
+      l  ~ヽ
+      じしf_,)ノ
+	";
+
+	println!(
+		"{}{}",
+		console::style(msg).fg(msg_color),
+		console::style(cat).fg(cat_color)
 	);
 
 	Ok(())
