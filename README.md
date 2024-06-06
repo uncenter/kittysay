@@ -40,6 +40,14 @@ kittysay <message>
 echo <message> | kittysay
 ```
 
+You can customize the output colors.
+
+```sh
+# -c <message color> <cat color>
+kittysay -c 2 5 <message>
+echo <message> | kittysay -c 2 5
+```
+
 ### `--width`
 
 You can use the `--width` flag to change the width of the speech bubble. Defaults to `45`, maxes out at a little less than the width of your terminal if you try to pass a very large number.
