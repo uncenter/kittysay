@@ -61,7 +61,7 @@ struct Cli {
 	/// Enable kittythink mode (thought bubble)
 	#[clap(long, short)]
 	think: bool,
-	/// use custom colors
+	/// Use custom colors. The first colors the message, the second colors the cat
 	#[arg(long, short, num_args(2))]
 	colors: Option<Vec<u8>>,
 }
