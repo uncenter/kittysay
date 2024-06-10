@@ -55,14 +55,17 @@ static THINK_CHARS: Chars = Chars {
 	angled_down_right: "⎝",
 	angled_down_left: "⎠",
 };
-pub fn generate(message: &str, format_opts: FormatOptions) -> String {
+
+#[must_use]
+pub fn generate(message: &str, format_opts: &FormatOptions) -> String {
 	let think = format_opts.think;
 	let width = format_opts.width;
 
 	let chars = if think { &THINK_CHARS } else { &SAY_CHARS };
-	let mut lines = wrap(&message, width as usize);
+	let mut lines = wrap(message, width as usize);
 	let longest = lines.iter().map(|line| line.width()).max().unwrap();
-	return format!(
+
+	format!(
 		"
   {}
 {}
@@ -106,5 +109,5 @@ pub fn generate(message: &str, format_opts: FormatOptions) -> String {
 		chars.bottom.repeat(longest),
 		chars.arrow,
 		chars.arrow,
-	);
+	)
 }

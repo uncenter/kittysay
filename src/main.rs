@@ -36,7 +36,7 @@ fn main() -> Result<()> {
 		width,
 	};
 
-	let msg = generate(&args.message, format_opts);
+	let msg = generate(&args.message, &format_opts);
 
 	let mut msg_color = console::Color::White;
 	let mut cat_color = console::Color::White;
