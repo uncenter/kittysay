@@ -111,3 +111,7 @@ pub fn generate(message: &str, format_opts: &FormatOptions) -> String {
 		chars.arrow,
 	)
 }
+
+pub fn print(message: &str, format_opts: &FormatOptions) -> String {
+	format!("{}{}", generate(message, &format_opts), KITTY)
+}
