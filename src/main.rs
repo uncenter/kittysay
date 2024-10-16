@@ -3,6 +3,7 @@ use color_eyre::eyre::Result;
 use clap::Parser;
 use clap_stdin::MaybeStdin;
 
+use anstream::{adapter::strip_str, println};
 use crossterm::terminal;
 
 use kittysay::{generate, FormatOptions, KITTY};
@@ -36,7 +37,7 @@ fn main() -> Result<()> {
 		width,
 	};
 
-	let msg = generate(&args.message, &format_opts);
+	let msg = generate(&strip_str(&args.message).to_string(), &format_opts);
 
 	let mut msg_color = console::Color::White;
 	let mut cat_color = console::Color::White;
