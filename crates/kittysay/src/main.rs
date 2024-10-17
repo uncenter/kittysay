@@ -6,7 +6,7 @@ use clap_stdin::MaybeStdin;
 use anstream::{adapter::strip_str, println};
 use crossterm::terminal;
 
-use kittysay::{generate, FormatOptions, KITTY};
+use kittycore::{generate, FormatOptions, KITTY};
 
 #[derive(Parser)]
 #[command(version, about)]

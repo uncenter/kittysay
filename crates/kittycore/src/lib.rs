@@ -1,5 +1,6 @@
+extern crate textwrap;
+extern crate unicode_width;
 use textwrap::wrap;
-
 use unicode_width::UnicodeWidthStr;
 
 pub static KITTY: &str = "

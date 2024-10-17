@@ -1,0 +1,25 @@
+[package]
+name = "kittysay"
+version.workspace = true
+authors.workspace = true
+license.workspace = true
+description.workspace = true
+readme.workspace = true
+repository.workspace = true
+homepage = "https://github.com/uncenter/kittysay/tree/main/crates/kittysay"
+keywords = ["cli"]
+categories = ["command-line-utilities"]
+edition.workspace = true
+
+
+[dependencies]
+anstream = "0.6.15"
+clap = { version = "4.5.9", features = ["derive"] }
+clap-stdin = "0.4.0"
+color-eyre = "0.6.3"
+console = "0.15.8"
+crossterm = "0.27.0"
+kittycore = { path = "../kittycore" }
+
+[lints]
+workspace = true
