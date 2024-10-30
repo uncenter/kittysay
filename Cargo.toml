@@ -19,7 +19,7 @@ color-eyre = "0.6.3"
 console = "0.15.8"
 crossterm = "0.27.0"
 textwrap = "0.16.1"
-unicode-width = "0.1.12"
+unicode-width = "0.2.0"
 
 [lints.clippy]
 all = "warn"
