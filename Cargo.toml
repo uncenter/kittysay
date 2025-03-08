@@ -1,26 +1,22 @@
-[package]
-name = "kittysay"
+[workspace]
+default-members = [
+	"crates/kittysay"
+]
+members = [
+    "crates/kittycore",
+    "crates/kittysay",
+]
+resolver = "2"
+
+[workspace.package]
 version = "0.8.0"
 authors = ["uncenter <uncenter@uncenter.dev>"]
 license = "MIT"
 description = "cowsay, but with a cute kitty :3"
 readme = "README.md"
-homepage = "https://github.com/uncenter/kittysay"
 repository = "https://github.com/uncenter/kittysay"
-keywords = ["cli"]
-categories = ["command-line-utilities"]
 edition = "2021"
 
-[dependencies]
-anstream = "0.6.15"
-clap = { version = "4.5.9", features = ["derive"] }
-clap-stdin = "0.4.0"
-color-eyre = "0.6.3"
-console = "0.15.8"
-crossterm = "0.27.0"
-textwrap = "0.16.1"
-unicode-width = "0.1.12"
-
-[lints.clippy]
+[workspace.lints.clippy]
 all = "warn"
 pedantic = "warn"

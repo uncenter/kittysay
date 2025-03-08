@@ -1,0 +1,18 @@
+[package]
+name = "kittycore"
+version.workspace = true
+authors.workspace = true
+license.workspace = true
+description.workspace = true
+readme.workspace = true
+repository.workspace = true
+homepage = "https://github.com/uncenter/kittysay/tree/main/crates/kittycore"
+edition.workspace = true
+
+
+[dependencies]
+textwrap = "0.16.1"
+unicode-width = "0.1.12"
+
+[lints]
+workspace = true
