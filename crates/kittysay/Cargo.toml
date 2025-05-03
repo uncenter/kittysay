@@ -16,7 +16,7 @@ edition.workspace = true
 anstream = "0.6.15"
 clap = { version = "4.5.9", features = ["derive"] }
 clap-stdin = "0.4.0"
-color-eyre = "0.6.3"
+color-eyre = "0.6.4"
 console = "0.15.8"
 crossterm = "0.27.0"
 kittycore = { path = "../kittycore" }
