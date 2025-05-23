@@ -19,7 +19,7 @@ clap-stdin = "0.4.0"
 color-eyre = "0.6.3"
 console = "0.15.8"
 crossterm = "0.27.0"
-kittycore = { path = "../kittycore", version = "0.0.0" }
+kittycore = { path = "../kittycore", version = "0.1.0" }
 
 [lints]
 workspace = true
