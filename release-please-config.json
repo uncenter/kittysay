@@ -2,12 +2,12 @@
 	"$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
 	"last-release-sha": "6b59ccaf73aaa999ff08ea6aedde430e766f47f6",
 	"plugins": ["cargo-workspace"],
+	"release-type": "rust",
+	"separate-pull-requests": true,
 	"packages": {
-		"crates/kittycore": {
-			"release-type": "rust"
-		},
+		"crates/kittycore": {},
 		"crates/kittysay": {
-			"release-type": "rust"
+			"include-component-in-tag": false
 		}
 	},
 	"changelog-sections": [
