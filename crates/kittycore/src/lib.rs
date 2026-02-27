@@ -13,6 +13,7 @@ pub static KITTY: &str = "
 pub struct FormatOptions {
 	pub think: bool,
 	pub width: u16,
+	pub tab_size: u8,
 }
 
 struct Chars {
@@ -61,7 +62,8 @@ static THINK_CHARS: Chars = Chars {
 pub fn generate(message: &str, opts: &FormatOptions) -> String {
 	let chars = if opts.think { &THINK_CHARS } else { &SAY_CHARS };
 
-	let mut lines = wrap(message, opts.width as usize);
+	let cleaned = message.replace("\t", &" ".repeat(opts.tab_size.into()));
+	let mut lines = wrap(&cleaned, opts.width as usize);
 	let longest = lines.iter().map(|line| line.width()).max().unwrap();
 
 	format!(

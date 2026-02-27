@@ -40,6 +40,7 @@ fn main() -> Result<()> {
 	let format_opts = FormatOptions {
 		think: args.think,
 		width,
+		tab_size: 4,
 	};
 
 	let msg = generate(&strip_str(&args.message).to_string(), &format_opts);
