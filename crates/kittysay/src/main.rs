@@ -22,6 +22,9 @@ struct Cli {
 	/// Use custom colors. The first colors the message, the second colors the cat
 	#[arg(long, short, num_args(2))]
 	colors: Option<Vec<u8>>,
+	/// Set the interpreted width/length of tabs
+	#[arg(long, default_value_t = 4)]
+	tab_size: u8,
 }
 
 fn main() -> Result<()> {
@@ -40,7 +43,7 @@ fn main() -> Result<()> {
 	let format_opts = FormatOptions {
 		think: args.think,
 		width,
-		tab_size: 4,
+		tab_size: args.tab_size,
 	};
 
 	let msg = generate(&strip_str(&args.message).to_string(), &format_opts);
