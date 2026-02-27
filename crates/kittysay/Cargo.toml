@@ -1,6 +1,6 @@
 [package]
 name = "kittysay"
-version.workspace = true
+version = "1.0.0"
 authors.workspace = true
 license.workspace = true
 description.workspace = true
@@ -18,7 +18,7 @@ clap-stdin = "0.4.0"
 color-eyre = "0.6.3"
 console = "0.15.8"
 crossterm = "0.27.0"
-kittycore = { path = "../kittycore" }
+kittycore = { path = "../kittycore", version = "0.1.0" }
 
 [lints]
 workspace = true
