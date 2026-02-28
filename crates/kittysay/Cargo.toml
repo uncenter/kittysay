@@ -17,9 +17,9 @@ anstream = "0.6.21"
 clap = { version = "4.5.60", features = ["derive"] }
 clap-stdin = "0.4.0"
 color-eyre = "0.6.5"
-console = "0.16.2"
 crossterm = "0.29.0"
 kittycore = { path = "../kittycore", version = "0.1.0" }
+owo-colors = "4.3.0"
 
 [lints]
 workspace = true

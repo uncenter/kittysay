@@ -3,8 +3,9 @@ use color_eyre::eyre::Result;
 use clap::Parser;
 use clap_stdin::MaybeStdin;
 
-use anstream::{adapter::strip_str, println};
+use anstream::adapter::strip_str;
 use crossterm::terminal;
+use owo_colors::{OwoColorize, Style, XtermColors};
 
 use kittycore::{generate, FormatOptions, KITTY};
 
@@ -48,17 +49,17 @@ fn main() -> Result<()> {
 
 	let msg = generate(&strip_str(&args.message).to_string(), &format_opts);
 
-	let mut msg_color = console::Color::White;
-	let mut cat_color = console::Color::White;
+	let mut msg_color = XtermColors::UserBrightWhite;
+	let mut cat_color = XtermColors::UserBrightWhite;
 	if let Some(colors) = args.colors {
-		msg_color = console::Color::Color256(colors[0]);
-		cat_color = console::Color::Color256(colors[1]);
+		msg_color = XtermColors::from(colors[0]);
+		cat_color = XtermColors::from(colors[1]);
 	}
 
 	println!(
 		"{}{}",
-		console::style(msg).fg(msg_color),
-		console::style(KITTY).fg(cat_color)
+		msg.style(Style::new().color(msg_color)),
+		KITTY.style(Style::new().color(cat_color))
 	);
 
 	Ok(())
