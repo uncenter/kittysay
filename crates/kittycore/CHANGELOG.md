@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.1](https://github.com/uncenter/kittysay/compare/kittycore-v0.1.0...kittycore-v0.1.1) (2026-02-28)
+
+
+### Bug Fixes
+
+* remove trailing newline from kitty drawing ([#48](https://github.com/uncenter/kittysay/issues/48)) ([9e4ee8e](https://github.com/uncenter/kittysay/commit/9e4ee8edcccb91400cd2dca790000b83953272df))
+* replace tabs with spaces for correct width ([9bb5ce2](https://github.com/uncenter/kittysay/commit/9bb5ce2080fd81b5e182ee3822cf0b5941a02f8b))
+
 ## 0.1.0 (2025-05-23)
 
 
