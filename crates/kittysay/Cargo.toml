@@ -15,7 +15,7 @@ edition.workspace = true
 [dependencies]
 anstream = "0.6.21"
 clap = { version = "4.5.60", features = ["derive"] }
-clap-stdin = "0.4.0"
+clap-stdin = "0.8.1"
 color-eyre = "0.6.5"
 console = "0.16.2"
 crossterm = "0.29.0"
