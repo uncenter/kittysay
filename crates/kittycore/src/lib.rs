@@ -7,8 +7,7 @@ pub static KITTY: &str = "
       ／l、
     （ﾟ､ ｡ ７
       l  ~ヽ
-      じしf_,)ノ
-	";
+      じしf_,)ノ";
 
 pub struct FormatOptions {
 	pub think: bool,
