@@ -26,6 +26,8 @@ jobs:
 
       - name: Cargo Test
         run: cargo test
+        env:
+          TEST_NO_TTY: 1
 
   clippy:
     runs-on: ubuntu-latest

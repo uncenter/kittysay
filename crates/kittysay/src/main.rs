@@ -28,7 +28,11 @@ fn main() -> Result<()> {
 	color_eyre::install()?;
 
 	let args = Cli::parse();
+
+	#[cfg(test_no_tty)]
 	let cols: u16 = 80;
+	#[cfg(not(test_no_tty))]
+	let (cols, _) = terminal::size()?;
 
 	let width = args.width.unwrap_or(45).min(cols.saturating_sub(5));
 
