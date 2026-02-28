@@ -29,6 +29,7 @@ fn main() -> Result<()> {
 
 	let args = Cli::parse();
 
+	// Manually specify column width for the purposes of testing without a TTY (e.g. CI/GitHub Actions). Enabled by TEST_NO_TTY=1, see build.rs.
 	#[cfg(test_no_tty)]
 	let cols: u16 = 80;
 	#[cfg(not(test_no_tty))]
