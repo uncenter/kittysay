@@ -12,7 +12,7 @@ edition.workspace = true
 
 [dependencies]
 textwrap = "0.16.2"
-unicode-width = "0.1.12"
+unicode-width = "0.2.2"
 
 [lints]
 workspace = true
