@@ -96,6 +96,10 @@ them puke.
 
 	----- stderr -----
 	");
+}
+
+#[test]
+fn test_fortune_2() {
 	assert_cmd_snapshot!(cli().arg(r#"Grabel's Law:
 	2 is not equal to 3 -- not even for large values of 2."#), @r"
 	success: true
