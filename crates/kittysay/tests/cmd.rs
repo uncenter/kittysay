@@ -224,3 +224,24 @@ fn test_colors() {
 	----- stderr -----
 	");
 }
+
+#[test]
+fn test_colors_2() {
+	assert_cmd_snapshot!(cli().arg(":3").arg("--colors").arg("1").arg("1"), @r"
+	success: true
+	exit_code: 0
+	----- stdout -----
+	[38;5;1m
+	  --
+	< :3 >
+	  --
+	  \
+	    \[0m[38;5;1m
+	      ／l、
+	    （ﾟ､ ｡ ７
+	      l  ~ヽ
+	      じしf_,)ノ[0m
+
+	----- stderr -----
+	");
+}
