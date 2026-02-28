@@ -49,18 +49,14 @@ fn main() -> Result<()> {
 
 	let msg = generate(&strip_str(&args.message).to_string(), &format_opts);
 
-	let mut msg_color = XtermColors::UserBrightWhite;
-	let mut cat_color = XtermColors::UserBrightWhite;
+	let mut msg_style = Style::new();
+	let mut cat_style = Style::new();
 	if let Some(colors) = args.colors {
-		msg_color = XtermColors::from(colors[0]);
-		cat_color = XtermColors::from(colors[1]);
+		msg_style = Style::new().color(XtermColors::from(colors[0]));
+		cat_style = Style::new().color(XtermColors::from(colors[1]));
 	}
 
-	println!(
-		"{}{}",
-		msg.style(Style::new().color(msg_color)),
-		KITTY.style(Style::new().color(cat_color))
-	);
+	println!("{}{}", msg.style(msg_style), KITTY.style(cat_style));
 
 	Ok(())
 }
