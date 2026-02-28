@@ -58,12 +58,10 @@ static THINK_CHARS: Chars = Chars {
 };
 
 #[must_use]
-pub fn generate(message: &str, format_opts: &FormatOptions) -> String {
-	let think = format_opts.think;
-	let width = format_opts.width;
+pub fn generate(message: &str, opts: &FormatOptions) -> String {
+	let chars = if opts.think { &THINK_CHARS } else { &SAY_CHARS };
 
-	let chars = if think { &THINK_CHARS } else { &SAY_CHARS };
-	let mut lines = wrap(message, width as usize);
+	let mut lines = wrap(message, opts.width as usize);
 	let longest = lines.iter().map(|line| line.width()).max().unwrap();
 
 	format!(
