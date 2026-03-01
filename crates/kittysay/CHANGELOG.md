@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/uncenter/kittysay/compare/v1.1.0...v1.1.1) (2026-03-01)
+
+
+### Bug Fixes
+
+* **kittysay:** make default colors bright white instead of dim ([#52](https://github.com/uncenter/kittysay/issues/52)) ([6eeed97](https://github.com/uncenter/kittysay/commit/6eeed97100575a9c693da23c6886b9aa3b2e2584))
+
 ## [1.1.0](https://github.com/uncenter/kittysay/compare/v1.0.0...v1.1.0) (2026-02-28)
 
 
