@@ -52,8 +52,8 @@ fn main() -> Result<()> {
 	let mut msg_style = Style::new();
 	let mut cat_style = Style::new();
 	if let Some(colors) = args.colors {
-		msg_style = Style::new().color(XtermColors::from(colors[0]));
-		cat_style = Style::new().color(XtermColors::from(colors[1]));
+		msg_style = msg_style.color(XtermColors::from(colors[0]));
+		cat_style = cat_style.color(XtermColors::from(colors[1]));
 	}
 
 	println!("{}{}", msg.style(msg_style), KITTY.style(cat_style));
