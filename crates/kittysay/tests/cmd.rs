@@ -207,3 +207,45 @@ fn test_width() {
 	----- stderr -----
 	");
 }
+
+#[test]
+fn test_colors() {
+	assert_cmd_snapshot!(cli().arg(":3").arg("--colors").arg("150").arg("20"), @r"
+	success: true
+	exit_code: 0
+	----- stdout -----
+	[38;5;150m
+	  --
+	< :3 >
+	  --
+	  \
+	    \[0m[38;5;20m
+	      ／l、
+	    （ﾟ､ ｡ ７
+	      l  ~ヽ
+	      じしf_,)ノ[0m
+
+	----- stderr -----
+	");
+}
+
+#[test]
+fn test_colors_2() {
+	assert_cmd_snapshot!(cli().arg(":3").arg("--colors").arg("1").arg("1"), @r"
+	success: true
+	exit_code: 0
+	----- stdout -----
+	[38;5;1m
+	  --
+	< :3 >
+	  --
+	  \
+	    \[0m[38;5;1m
+	      ／l、
+	    （ﾟ､ ｡ ７
+	      l  ~ヽ
+	      じしf_,)ノ[0m
+
+	----- stderr -----
+	");
+}
