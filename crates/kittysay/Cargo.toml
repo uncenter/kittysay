@@ -26,4 +26,4 @@ workspace = true
 
 [dev-dependencies]
 insta = { version = "1.46.3", features = ["yaml"] }
-insta-cmd = "0.6.0"
+insta-cmd = "0.7.0"
